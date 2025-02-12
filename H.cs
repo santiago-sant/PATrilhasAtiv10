@@ -1,49 +1,58 @@
-using System;
-
-namespace Snatissimo
-{
     class Program
     {
+        public class Somar
+        {
+            public int SomarDiagonalPrincipal(int[,] matriz)
+            {
+                int soma = 0;
+                for (int i = 0; i < 10; i++)
+                {
+                    soma += matriz[i, i];
+                    Console.WriteLine($"Elemento [{i},{i}] = {matriz[i, i]}");
+                }
+                return soma;
+            }
+
+            public void MediaDiagonalPrincipal(int soma)
+            {
+                int media = soma / 10;
+                Console.WriteLine($"A média da diagonal principal é: {media}");
+            }
+        }
+
         public static void Main(string[] args)
         {
-            Random rand = new Random();
-            int[,] matriz = new int[10, 10]; 
+            int[,] matriz =
+            {
+                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+                {11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
+                {21, 22, 23, 24, 25, 26, 27, 28, 29, 30},
+                {31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
+                {41, 42, 43, 44, 45, 46, 47, 48, 49, 50},
+                {51, 52, 53, 54, 55, 56, 57, 58, 59, 60},
+                {61, 62, 63, 64, 65, 66, 67, 68, 69, 70},
+                {71, 72, 73, 74, 75, 76, 77, 78, 79, 80},
+                {81, 82, 83, 84, 85, 86, 87, 88, 89, 90},
+                {91, 92, 93, 94, 95, 96, 97, 98, 99, 100}
+            };
 
-            int soma = 0; 
+            Somar somar = new Somar();
+            int resultado = somar.SomarDiagonalPrincipal(matriz);
 
-        
+            // Exibe a matriz
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    matriz[i, j] = rand.Next(1, 101); 
-                    soma += matriz[i, j]; 
+                    Console.Write(matriz[i, j] + " ");
                 }
+                Console.WriteLine();
             }
+            Console.WriteLine("\n" + "A soma da diagonal da atriz acima é : " + resultado + "\n");
+            // Chama a função corretamente
+            somar.MediaDiagonalPrincipal(resultado);
 
-          
-            Console.WriteLine("Valores da diagonal principal:");
-            for (int i = 0; i < 10; i++)
-            {
-                Console.Write(matriz[i, i] + " ");
-            }
-
-            Console.WriteLine();
-
-            
-            int somaDiagonal = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                somaDiagonal += matriz[i, i]; // Somando os elementos da diagonal principal
-            }
-
-            // Exibindo a soma total de todos os números da matriz
-            Console.WriteLine("Soma total dos valores da matriz: " + soma);
-            Console.WriteLine("Soma dos valores da diagonal principal: " + somaDiagonal);
-
-            // Aguardando o pressionamento de uma tecla para continuar
-            Console.Write("Press any key to continue . . . ");
-            Console.ReadKey(true);
+            Console.ReadKey();
         }
     }
 }
